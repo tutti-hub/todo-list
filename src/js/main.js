@@ -1,6 +1,8 @@
 import { generateId, assert } from './model/utils.js';
 import { Project } from './model/project.js';
 
+require('../scss/main.scss');
+
 const _ = require('lodash');
 
 const id = generateId();

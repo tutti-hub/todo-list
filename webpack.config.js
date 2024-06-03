@@ -12,13 +12,13 @@ const stylesHandler = MiniCssExtractPlugin.loader;
 
 
 const config = {
-    entry: './src/index.js',
+    entry: './src/js/main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html',
+            template: './src/index.html',
         }),
 
         new MiniCssExtractPlugin(),
@@ -54,8 +54,8 @@ const config = {
 module.exports = () => {
     if (isProduction) {
         config.mode = 'production';
-        
-        
+
+
     } else {
         config.mode = 'development';
     }
