@@ -4,15 +4,10 @@ import { Project } from './project.js';
 
 class Repository {
 
-    #keyName;
-
-    #items = [];
-
-    #dbService;
-
     constructor(keyName, dbService) {
-        this.#keyName = keyName;
-        this.#dbService = dbService;
+        this.keyName = keyName;
+        this.dbService = dbService;
+        this.items = dbService.getItem(this.keyName) || [];
     }
 
 
@@ -22,17 +17,17 @@ class Repository {
 
 
     findAll() {
-        if(!this.#items){
-            this.#items = this.#dbService.getItem(this.#keyName);
+        if(!this.items){
+            this.items = this.dbService.getItem(this.keyName);
         }
 
-        return this.#items;
+        return this.items;
     }
 
 
     save(item) {
-       this.#items.push(item);
-       this.#dbService.setItem(this.#keyName, this.#items);
+       this.items.push(item);
+       this.dbService.setItem(this.keyName, this.items);
     }
 
 }

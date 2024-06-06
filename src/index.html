@@ -15,20 +15,12 @@
             <div class="row">
                 <div class="col-sm-3">
 
-                        <div class="nav flex-column nav-pills m-4">
-                            <button class="nav-link text-start active" type="button">
+                    <div id="projects" class="nav flex-column nav-pills m-4">
+                        <button class="nav-link text-start active" type="button" data-project-id="1"">
                                 <i class="bi bi-tag me-2"></i>
                                 Default
-                            </button>
-                            <button class="nav-link text-start" type="button">
-                                <i class="bi bi-tag me-2"></i>
-                                Work
-                            </button>
-                            <button class="nav-link text-start" type="button">
-                                <i class="bi bi-tag me-2"></i>
-                                Personal
-                            </button>
-                        </div>
+                        </button>
+                    </div>
 
                 </div>
 
@@ -36,13 +28,17 @@
                 <div class="col-sm-9">
                     <nav class="nav justify-content-center">
                         <div class="btn-group">
-                            <button class="btn btn-outline-success">
+                            <button class="btn btn-light">
                                 <i class="bi bi-plus-circle me-2"></i>
                                 Todo
                             </button>
                             <div class="dv"></div>
-                            <button class="btn btn-outline-success float-right">
+                            <button id="newProjectButton" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newProjectModal">
                                 <i class="bi bi-plus-circle me-2"></i>
+                                Project
+                            </button>
+                            <button class="btn btn-danger">
+                                <i class="bi bi-dash-circle me-2"></i>
                                 Project
                             </button>
                         </div>
@@ -77,101 +73,38 @@
                                 <td>2024-06-24</td>
                                 <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
                             </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td> Cum sociis natoque.  </td>
-                                <td>2024-06-17</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td>Mutationem consuetudium lectorum. Mirum.</td>
-                                <td>2024-05-22</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td>Dynamicus, qui sequitur mutationem consuetudium lectorum.</td>
-                                <td>2024-06-24</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td> Cum sociis natoque.  </td>
-                                <td>2024-06-17</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td>Mutationem consuetudium lectorum. Mirum.</td>
-                                <td>2024-05-22</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td>Dynamicus, qui sequitur mutationem consuetudium lectorum.</td>
-                                <td>2024-06-24</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td> Cum sociis natoque.  </td>
-                                <td>2024-06-17</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td>Mutationem consuetudium lectorum. Mirum.</td>
-                                <td>2024-05-22</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td>Dynamicus, qui sequitur mutationem consuetudium lectorum.</td>
-                                <td>2024-06-24</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td> Cum sociis natoque.  </td>
-                                <td>2024-06-17</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td>Mutationem consuetudium lectorum. Mirum.</td>
-                                <td>2024-05-22</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td>Dynamicus, qui sequitur mutationem consuetudium lectorum.</td>
-                                <td>2024-06-24</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td> Cum sociis natoque.  </td>
-                                <td>2024-06-17</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td>Mutationem consuetudium lectorum. Mirum.</td>
-                                <td>2024-05-22</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
-                                <td>Dynamicus, qui sequitur mutationem consuetudium lectorum.</td>
-                                <td>2024-06-24</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
+
+        <!-- Modals -->
+        <!-- New Project Modal -->
+        <div id="newProjectModal" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">New Project</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="newProjectTitleInput" class="form-label">Project Title</label>
+                            <input type="email" class="form-control" id="newProjectTitleInput" placeholder="Put new project title here...">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="saveNewProjectButton" type="button" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </body>
 
 </html>
