@@ -3,6 +3,7 @@ import { Project } from './model/project.js';
 import { loadProjects } from './ui/projects.ui.js';
 
 require('./ui/projects.ui.js');
+require('./ui/todos.ui.js');
 require('../scss/main.scss');
 
 const _ = require('lodash');
