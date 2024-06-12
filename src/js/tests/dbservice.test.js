@@ -10,11 +10,11 @@ test('set item', () => {
     db.setItem(keyName, projects);
     const storedProjects = db.getItem(keyName);
 
-    expect(storedProjects.length).toBe(projects.length);
+    expect(storedProjects).toBe(JSON.stringify(projects));
 
     db.clear();
 
-    expect(db.getItem(keyName)).toBeNull();
-
+    const empty = db.getItem(keyName);
+    expect('[]').toBe(db.getItem(keyName));
 
 });

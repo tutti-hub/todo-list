@@ -8,7 +8,8 @@ require('../scss/main.scss');
 
 const _ = require('lodash');
 
+// Default project id
+const activeProjectId = '1';
 
-
-loadProjects();
+loadProjects(activeProjectId);
 

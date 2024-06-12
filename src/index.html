@@ -16,10 +16,6 @@
                 <div class="col-sm-3">
 
                     <div id="projects" class="nav flex-column nav-pills m-4">
-                        <button class="nav-link text-start active" type="button" data-project-id="1"">
-                            <i class="bi bi-tag me-2"></i>
-                            Default
-                        </button>
                     </div>
 
                 </div>
@@ -27,7 +23,7 @@
 
                 <div class="col-sm-9">
                     <nav class="nav justify-content-center">
-                        <div class="btn-group">
+                        <div class="btn-group mt-3">
                             <button id="newTodoButton" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newTodoModal">
                                 <i class="bi bi-plus-circle me-2"></i>
                                 Todo
@@ -37,7 +33,7 @@
                                 <i class="bi bi-plus-circle me-2"></i>
                                 Project
                             </button>
-                            <button class="btn btn-danger">
+                            <button id="deleteProjectButton" class="btn btn-danger">
                                 <i class="bi bi-dash-circle me-2"></i>
                                 Project
                             </button>
@@ -45,16 +41,17 @@
                     </nav>
 
 
-                    <table class="table table-hover">
+                    <table class="table table-hover mt-2">
                         <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Due Date</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody id="todos">
+                            <!--
                             <tr>
                                 <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
                                 <td> Cum sociis natoque.  </td>
@@ -73,6 +70,7 @@
                                 <td>2024-06-24</td>
                                 <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
                             </tr>
+                            -->
                         </tbody>
                     </table>
                 </div>

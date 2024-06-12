@@ -1,6 +1,12 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
+$done-color: $gray-500;
+$nav-link-color: $dark;
+
+.nav-link {
+    color: $nav-link-color;
+}
 
 .nav-pills .nav-link {
     border-radius: 0 25px 25px 0;
@@ -8,4 +14,23 @@
 
 .nav-pills .nav-link:not(.active):hover {
     background-color: $gray-200;
+    color: $nav-link-color;
+}
+
+.nav-pills .nav-link.active {
+    background-color: $warning;
+}
+
+.done td {
+    text-decoration: line-through;
+    color: $done-color;
+}
+
+.done .form-check-input:checked {
+    background-color: $done-color;
+    border-color: $done-color;
+}
+
+.done i {
+    color: $done-color;
 }

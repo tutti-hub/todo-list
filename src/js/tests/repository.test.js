@@ -2,8 +2,8 @@ import { test, expect } from 'vitest';
 import { generateId } from '../model/utils.js';
 import { Project } from '../model/project.js';
 import { Todo } from '../model/todo.js';
-import { DbService } from '../model/dbservice.js';
-import { Repository } from '../model/repository.js';
+import { ProjectRepository } from '../model/project_repository.js';
+import { TodoRepository } from '../model/todo_repository';
 
 const projectOpt1 = { id: generateId(), title: 'Work' };
 const projectOpt2 = { id: generateId(), title: 'Sport' };
@@ -19,7 +19,7 @@ const todoOpt1 = {
 const todos = [new Todo(todoOpt1)];
 
 test('projects repository', () => {
-    const projectRepo = new Repository('projects', new DbService());
+    const projectRepo = new ProjectRepository();
     const project = projects[0];
 
     projectRepo.save(project);
@@ -33,7 +33,7 @@ test('projects repository', () => {
 });
 
 test('todos repository', () => {
-    const todoRepo = new Repository('todos', new DbService());
+    const todoRepo = new TodoRepository();
     const todo = todos[0];
 
     todoRepo.save(todo);

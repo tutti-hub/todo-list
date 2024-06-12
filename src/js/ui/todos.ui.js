@@ -1,48 +1,32 @@
-import { Repository } from '../model/repository.js';
-import { DbService } from '../model/dbservice.js';
+import { todoRepository, projectRepository } from '../model/repositories.js';
 import { assert } from '../model/utils.js';
 import { Todo } from '../model/todo.js';
-
-
-const projectsRepository = new Repository('projects', new DbService());
-assert(projectsRepository);
-
-const todosRepository = new Repository('todos', new DbService());
-
-const newTodoButton = document.querySelector('#newTodoButton');
-assert(newTodoButton);
-
-const newTodoTitleInput = document.querySelector('#newTodoTitleInput');
-assert(newTodoTitleInput);
-
-const newTodoProjectsSelect = document.querySelector('#newTodoProjectsSelect');
-assert(newTodoProjectsSelect);
-
-const newTodoDueDate = document.querySelector('#newTodoDueDate');
-assert(newTodoDueDate);
-
-const newTodoDescription = document.querySelector('#newTodoDescription');
-assert(newTodoDescription);
-
-const newTodoPriority = document.querySelector('#newTodoPriority');
-assert(newTodoPriority);
-
-const newTodoDone = document.querySelector('#newTodoDone');
-assert(newTodoDone);
-
-const saveNewTodoButton = document.querySelector('#saveNewTodoButton');
-assert(saveNewTodoButton);
-
-const todos = document.querySelector('#todos');
-assert(todos, 'todos');
+import { loadProjects, getActiveProject } from './projects.ui.js';
+import { newTodoButton,
+         newTodoTitleInput,
+         newTodoProjectsSelect,
+         newTodoDueDate,
+         newTodoDescription,
+         newTodoPriotity,
+         newTodoDone,
+         saveNewTodoButton,
+         todosOut,
+         projectsOut } from './controls.js';
 
 newTodoButton.addEventListener('click', (event) => {
     // init projects
     newTodoProjectsSelect.innerHTML = '';
 
-    for (let proj of projectsRepository.findAll()){
-        newTodoProjectsSelect.insertAdjacentHTML('beforeend',
-            `<option value="${proj.id}">${proj.title}</option>`);
+    const projects = projectRepository.findAll();
+    const activeProject = getActiveProject();
+    for (let proj of projects){
+        let element;
+        if(activeProject.id === proj.id) {
+            element = `<option value="${proj.id}" selected>${proj.title}</option>`;
+        } else {
+            element = `<option value="${proj.id}">${proj.title}</option>`;
+        }
+        newTodoProjectsSelect.insertAdjacentHTML('beforeend', element);
     }
 
     // init Due Date
@@ -62,31 +46,56 @@ saveNewTodoButton.addEventListener('click', () => {
     const todoOptions = { title, projectId, dueDate, description, priority, done };
 
     const newTodo = new Todo(todoOptions);
-    todosRepository.save(newTodo);
-
-    todos.insertAdjacentHTML('beforeend', `
-
-                            <tr data-todo-id="${newTodo.id}">
-                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" ></th>
-                                <td>${newTodo.title}</td>
-                                <td>${newTodo.dueDate.toISOString().slice(0,10)}</td>
-                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
-                            </tr>`
-     );
-
-     const checkBox =  todos.querySelector(`[data-todo-id="${newTodo.id}"] [type="checkbox"]`);
-     assert(checkBox, 'CheckBox Done');
-
-     checkBox.checked = newTodo.done;
+    todoRepository.save(newTodo);
+    loadProjects(projectId);
 
 });
 
+todosOut.addEventListener('click', (event) => {
+
+    if(event.target.type === 'checkbox') {
+         const tr = event.target.closest('tr');
+
+        todoRepository.setDone(tr.dataset.todoId, event.target.checked);
+
+         (event.target.checked
+            ? tr.classList.add.bind(tr.classList)
+            : tr.classList.remove.bind(tr.classList))('done');
+
+    }
+});
+
+function renderTodo(todo) {
+    todosOut.insertAdjacentHTML('beforeend', `
+
+                            <tr class="${todo.done ? 'done' : ''}" data-todo-id="${todo.id}">
+                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" ></th>
+                                <td>${todo.title}</td>
+                                <td>${todo.dueDate.toISOString().slice(0,10)}</td>
+                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
+                            </tr>`
+     );
+     const checkBox =  todosOut.querySelector(`[data-todo-id="${todo.id}"] [type="checkbox"]`);
+     assert(checkBox, 'CheckBox Done');
+
+     checkBox.checked = todo.done;
+
+}
+
+function renderTodosByProjectId(projectId) {
+    todosOut.innerText = '';
+    const projectTodos = todoRepository.findAll().filter(t => t.projectId === projectId);
+
+    if(projectTodos){
+        projectTodos.forEach(todo => {
+            todo.dueDate = new Date(todo.dueDate);
+            renderTodo(todo);
+        });
+    }
+}
 
 
-
-
-
-
+export { renderTodosByProjectId };
 
 
 

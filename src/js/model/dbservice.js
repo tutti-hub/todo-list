@@ -18,7 +18,7 @@ export class DbService{
         } else {
             val = this.#storage[name];
         }
-        return val ? JSON.parse(val) : null;
+        return val || '[]';
     }
 
 
