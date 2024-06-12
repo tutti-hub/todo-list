@@ -3,16 +3,16 @@ import { Project } from '../model/project.js';
 import { renderTodosByProjectId } from './todos.ui.js';
 import { assert } from '../model/utils.js';
 import { newProjectButton,
-    newProjectModal,
-    saveNewProjectButton,
-    newProjectTitleInput,
+    projectModal,
+    projectModalSaveButton,
+    projectModalTitleInput,
     projectsOut,
     deleProjectButton } from './controls.js';
 
 require('bootstrap');
 
-saveNewProjectButton.addEventListener('click', () => {
-    const proj = new Project({ title: `${newProjectTitleInput.value}` });
+projectModalSaveButton.addEventListener('click', () => {
+    const proj = new Project({ title: `${projectModalTitleInput.value}` });
     projectRepository.save(proj);
     //addProjectToDOM(proj);
     loadProjects(proj.id);
@@ -43,9 +43,9 @@ deleteProjectButton.addEventListener('click', (event) => {
     if(del) {
         todoRepository.removeByProjectId(activeProject.id);
         projectRepository.remove(activeProject.id);
+        loadProjects('1');
     }
 
-    loadProjects('1');
 
 });
 
@@ -83,9 +83,9 @@ function addProjectToDOM(proj, activeProjectId) {
         <i class="bi bi-tag me-2"></i>
          ${proj.title}
    </button>`;
-    projects.insertAdjacentHTML('beforeend', projButton);
+    projectsOut.insertAdjacentHTML('beforeend', projButton);
     if(proj.id === '1'){
-        projects.insertAdjacentHTML('beforeend', '<hr>');
+        projectsOut.insertAdjacentHTML('beforeend', '<hr>');
     }
 
     renderTodosByProjectId(activeProjectId);

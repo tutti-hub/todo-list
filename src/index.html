@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-sm-3">
 
-                    <div id="projects" class="nav flex-column nav-pills m-4">
+                    <div id="projectsOut" class="nav flex-column nav-pills m-4">
                     </div>
 
                 </div>
@@ -24,12 +24,12 @@
                 <div class="col-sm-9">
                     <nav class="nav justify-content-center">
                         <div class="btn-group mt-3">
-                            <button id="newTodoButton" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newTodoModal">
+                            <button id="newTodoButton" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#todoModal">
                                 <i class="bi bi-plus-circle me-2"></i>
                                 Todo
                             </button>
                             <div class="dv"></div>
-                            <button id="newProjectButton" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newProjectModal">
+                            <button id="newProjectButton" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#projectModal">
                                 <i class="bi bi-plus-circle me-2"></i>
                                 Project
                             </button>
@@ -50,7 +50,7 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody id="todos">
+                        <tbody id="todosOut">
                             <!--
                             <tr>
                                 <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
@@ -80,7 +80,7 @@
 
         <!-- Modals -->
         <!-- New Project Modal -->
-        <div id="newProjectModal" class="modal" tabindex="-1">
+        <div id="projectModal" class="modal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -89,25 +89,25 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="newProjectTitleInput" class="form-label">Project Title</label>
-                            <input type="text" class="form-control" id="newProjectTitleInput" placeholder="Put new project title here...">
+                            <label for="projectModalTitleInput" class="form-label">Project Title</label>
+                            <input type="text" class="form-control" id="projectModalTitleInput" placeholder="Put new project title here...">
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button id="saveNewProjectButton" type="button" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+                        <button id="projectModalSaveButton" type="button" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- New Todo Modal-->
-        <div id="newTodoModal" class="modal" tabindex="-1">
+        <div id="todoModal" class="modal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">New Todo</h5>
+                        <h5 id="modalHeader" class="modal-title">New Todo ***</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
@@ -117,15 +117,15 @@
                             <!-- Todo Title-->
 
                             <div class="col-md-12">
-                                <label for="newTodoTitleInput" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="newTodoTitleInput" placeholder="Put new todo title here...">
+                                <label for="todoModalTitleInput" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="todoModalTitleInput" placeholder="Put new todo title here...">
                             </div>
 
                             <!-- Project -->
 
                             <div class="col-md-6">
-                                <label for="newTodoProjectsSelect" class="form-label">Project</label>
-                                <select id="newTodoProjectsSelect" class="form-select" aria-label="Selected Project">
+                                <label for="todoModalProjectsSelect" class="form-label">Project</label>
+                                <select id="todoModalProjectsSelect" class="form-select" aria-label="Selected Project">
                                     <option value="1" selected>Default</option>
                                 </select>
                             </div>
@@ -134,15 +134,15 @@
                             <!-- Due Date -->
 
                             <div class="col-md-6">
-                                <label for="newTodoDueDate" class="form-label">Due Date</label>
-                                <input type="date" class="form-control" id="newTodoDueDate">
+                                <label for="todoModalDueDateInput" class="form-label">Due Date</label>
+                                <input type="date" class="form-control" id="todoModalDueDateInput">
                             </div>
 
                             <!-- Description -->
 
                             <div class="col-md-12">
-                                <label for="newTodoDescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="newTodoDescription" rows="3"></textarea>
+                                <label for="todoModalDescriptionTextArea" class="form-label">Description</label>
+                                <textarea class="form-control" id="todoModalDescriptionTextArea" rows="3"></textarea>
                             </div>
 
 
@@ -150,14 +150,14 @@
 
                           <div class="col-md-12">
                               <div class="row align-items-center">
-                                  <label for="newTodoPriority" class="form-label col-md-2">Priority</label>
+                                  <label for="todoModalPriorityInput" class="form-label col-md-2">Priority</label>
                                   <div class="col-md-3">
-                                      <input type="number" class="form-control" id="newTodoPriority" min="1" max="100" value="1">
+                                      <input type="number" class="form-control" id="todoModalPriorityInput" min="1" max="100" value="1">
                                   </div>
                                   <div class="col-md-4">
                                       <div class="form-check">
-                                          <input class="form-check-input" type="checkbox" value="" id="newTodoDone">
-                                          <label class="form-check-label" for="newTodoDone"> Done </label>
+                                          <input class="form-check-input" type="checkbox" value="" id="todoModalDoneInput">
+                                          <label class="form-check-label" for="todoModalDoneInput"> Done </label>
                                       </div>
                                   </div>
                               </div>
@@ -169,7 +169,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button id="saveNewTodoButton" type="button" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+                        <button id="todoModalSaveButton" type="button" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
                     </div>
 
                 </div>
