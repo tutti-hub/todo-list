@@ -84,10 +84,11 @@ function addProjectToDOM(proj, activeProjectId) {
          ${proj.title}
    </button>`;
     projectsOut.insertAdjacentHTML('beforeend', projButton);
+/*
     if(proj.id === '1'){
         projectsOut.insertAdjacentHTML('beforeend', '<hr>');
     }
-
+*/
     renderTodosByProjectId(activeProjectId);
 }
 
