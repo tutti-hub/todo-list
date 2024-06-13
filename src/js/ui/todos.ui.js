@@ -34,19 +34,28 @@ todoModalSaveButton.addEventListener('click', () => {
 todosOut.addEventListener('click', (event) => {
 
     const tr = event.target.closest('tr');
+    const todo = todoRepository.findById(tr.dataset.todoId);
+
     if(event.target.type === 'checkbox') {
-        todoRepository.setDone(tr.dataset.todoId, event.target.checked);
+        todoRepository.setDone(todo.id, event.target.checked);
 
         (event.target.checked
             ? tr.classList.add.bind(tr.classList)
             : tr.classList.remove.bind(tr.classList))('done');
 
-    } else if(event.target.type === 'button' ||
+    } else if(event.target.classList.contains('todo-edit') ||
               event.target.classList.contains('bi-pencil-square')) {
-        const todo = todoRepository.findById(tr.dataset.todoId);
         initTodoModal(todo);
         const modal = new bootstrap.Modal("#todoModal");
         modal.show();
+    } else if(event.target.classList.contains('todo-delete') ||
+              event.target.classList.contains('bi-x-lg')) {
+        const del = confirm(`Delete "${todo.title.slice(0, 30)}..."?`);
+
+        if(del){
+            todoRepository.remove(todo.id);
+            tr.remove();
+        }
     }
 });
 
@@ -100,7 +109,13 @@ function renderTodo(todo) {
                                 <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" ></th>
                                 <td>${todo.title}</td>
                                 <td>${todo.dueDate.toISOString().slice(0,10)}</td>
-                                <td><button class="btn btn-sm btn-light" type="button"><i class="bi bi-pencil-square"></i></button></td>
+                                <td>
+                                    <button class="btn todo-edit me-2" type="button">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button><button class="btn todo-delete" type="button">
+                                        <i class="bi bi-x-lg text-danger"></i>
+                                    </button>
+                                </td>
                                 </tr>`
                                );
                                const checkBox =  todosOut.querySelector(`[data-todo-id="${todo.id}"] [type="checkbox"]`);
