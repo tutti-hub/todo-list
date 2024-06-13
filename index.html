@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Webpack App</title>
+    <script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary md">
+            <div class="container-md justify-content-center">
+                <a class="navbar-brand" href="#">TodoList</a>
+            </div>
+        </nav>
+
+        <div class="container my-3">
+            <div class="row">
+                <div class="col">
+
+                    <div id="projectsOut" class="nav flex-column nav-pills m-4">
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-9">
+                    <nav class="nav justify-content-center">
+                        <div class="btn-group mt-3">
+                            <button id="newTodoButton" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#todoModal">
+                                <i class="bi bi-plus-circle me-2"></i>
+                                Todo
+                            </button>
+                            <div class="dv"></div>
+                            <button id="newProjectButton" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#projectModal">
+                                <i class="bi bi-plus-circle me-2"></i>
+                                Project
+                            </button>
+                            <button id="deleteProjectButton" class="btn btn-danger">
+                                <i class="bi bi-dash-circle me-2"></i>
+                                Project
+                            </button>
+                        <div class="form-check form-switch mx-4 d-flex align-items-center">
+                            <input class="form-check-input" type="checkbox" role="switch" id="showCompletedInput">
+                            <label class="form-check-label mx-2" for="showCompletedInput">Show completed</label>
+                        </div>
+
+                        </div>
+                    </nav>
+
+
+                    <table class="table table-hover mt-2">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="todosOut">
+                            <!--tr>
+                                <th scope="row"><input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox"></th>
+                                <td> Cum sociis natoque.  </td>
+                                <td>2024-06-17</td>
+                                <td><button class="btn btn-sm btn-light" type="buttom" ><i class="bi bi-pencil-square"></i></button></td>
+                            </tr-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modals -->
+        <!-- New Project Modal -->
+        <div id="projectModal" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">New Project</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="projectModalTitleInput" class="form-label">Project Title</label>
+                            <input type="text" class="form-control" id="projectModalTitleInput" placeholder="Put new project title here...">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="projectModalSaveButton" type="button" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Todo Modal-->
+        <div id="todoModal" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="modalHeader" class="modal-title">New Todo ***</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row g-3">
+
+                            <!-- Todo Title-->
+
+                            <div class="col-md-12">
+                                <label for="todoModalTitleInput" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="todoModalTitleInput" placeholder="Put new todo title here...">
+                            </div>
+
+                            <!-- Project -->
+
+                            <div class="col-md-6">
+                                <label for="todoModalProjectsSelect" class="form-label">Project</label>
+                                <select id="todoModalProjectsSelect" class="form-select" aria-label="Selected Project">
+                                    <option value="1" selected>Default</option>
+                                </select>
+                            </div>
+
+
+                            <!-- Due Date -->
+
+                            <div class="col-md-6">
+                                <label for="todoModalDueDateInput" class="form-label">Due Date</label>
+                                <input type="date" class="form-control" id="todoModalDueDateInput">
+                            </div>
+
+                            <!-- Description -->
+
+                            <div class="col-md-12">
+                                <label for="todoModalDescriptionTextArea" class="form-label">Description</label>
+                                <textarea class="form-control" id="todoModalDescriptionTextArea" rows="3"></textarea>
+                            </div>
+
+
+                          <!-- Priority & Done -->
+
+                          <div class="col-md-12">
+                              <div class="row align-items-center">
+                                  <label for="todoModalPriorityInput" class="form-label col-md-2">Priority</label>
+                                  <div class="col-md-3">
+                                      <input type="number" class="form-control" id="todoModalPriorityInput" min="1" max="100" value="1">
+                                  </div>
+                                  <div class="col-md-4">
+                                      <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="todoModalDoneInput">
+                                          <label class="form-check-label" for="todoModalDoneInput"> Done </label>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                        </div>  <!-- row -->
+                    </div> <!-- modal-body -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="todoModalSaveButton" type="button" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+
+</html>
