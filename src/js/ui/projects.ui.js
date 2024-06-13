@@ -45,8 +45,6 @@ deleteProjectButton.addEventListener('click', (event) => {
         projectRepository.remove(activeProject.id);
         loadProjects('1');
     }
-
-
 });
 
 function getActiveProject() {
@@ -89,7 +87,9 @@ function addProjectToDOM(proj, activeProjectId) {
         projectsOut.insertAdjacentHTML('beforeend', '<hr>');
     }
 */
-    renderTodosByProjectId(activeProjectId);
+    if(proj.id === activeProjectId) {
+        renderTodosByProjectId(activeProjectId);
+    }
 }
 
 

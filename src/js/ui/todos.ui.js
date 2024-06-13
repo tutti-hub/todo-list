@@ -12,8 +12,9 @@ import { newTodoButton,
          todoModalDoneInput,
          todoModalSaveButton,
          todosOut,
-         projectsOut } from './controls.js';
-
+         projectsOut,
+         showCompletedInput } from './controls.js';
+import { state } from './state.js';
 import * as bootstrap from 'bootstrap';
 
 
@@ -57,6 +58,12 @@ todosOut.addEventListener('click', (event) => {
             tr.remove();
         }
     }
+});
+
+
+showCompletedInput.addEventListener('click', (event) => {
+    state.showCompleted = event.target.checked;
+    renderTodosByProjectId(getActiveProject().id);
 });
 
 function initTodoModal(options) {
@@ -125,9 +132,19 @@ function renderTodo(todo) {
 
 }
 
+
 function renderTodosByProjectId(projectId) {
     todosOut.innerText = '';
-    const projectTodos = todoRepository.findAll().filter(t => t.projectId === projectId);
+
+    const readyToRender = todo => {
+        let flag = todo.projectId === projectId;
+        if(!state.showCompleted) {
+            flag = flag && !todo.done;
+        }
+        return flag;
+    };
+
+    const projectTodos = todoRepository.findAll().filter(readyToRender);
 
     if(projectTodos){
         projectTodos.forEach(todo => {

@@ -19,3 +19,4 @@ export const todoModalDoneInput           = document.querySelector('#todoModalDo
 export const todoModalSaveButton          = document.querySelector('#todoModalSaveButton');
 export const todosOut                     = document.querySelector('#todosOut');
 
+export const showCompletedInput           = document.querySelector('#showCompletedInput');

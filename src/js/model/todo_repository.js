@@ -52,7 +52,6 @@ export class TodoRepository {
     save(todo) {
         // todo: check argument
         const index = this.items.findIndex(e => e.id === todo.id);
-        console.log('save index ...', index);
         if(index == -1){
             this.items.push(todo);
         } else {
